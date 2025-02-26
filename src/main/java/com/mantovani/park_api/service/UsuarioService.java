@@ -2,9 +2,9 @@ package com.mantovani.park_api.service;
 
 import com.mantovani.park_api.entity.Usuario;
 import com.mantovani.park_api.repository.UsuarioRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -15,5 +15,9 @@ public class UsuarioService {
     @Transactional
     public Usuario salvar(Usuario usuario) {
         return usuarioRepository.save(usuario);
+    }
+    @Transactional(readOnly= true)
+    public Usuario buscarPorId(Long id) {
+        return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario não encontrado "));
     }
 }

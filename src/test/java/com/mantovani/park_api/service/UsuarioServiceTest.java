@@ -8,6 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +23,7 @@ class UsuarioServiceTest {
     private UsuarioService usuarioService;
 
     @Test
-    void thenSalveUserSucessed() {
+    void deveSalvarUsuarioComSucesso() {
         Usuario usuario = new Usuario();
         usuario.setUsername("carlos@test.com");
 
@@ -32,5 +34,28 @@ class UsuarioServiceTest {
         assertNotNull(usuarioSalvo);
         assertEquals("carlos@test.com", usuarioSalvo.getUsername());
         verify(usuarioRepository, times(1)).save(usuario);
+    }
+
+    @Test
+    void deveRetornarUsuarioQuandoIdExiste() {
+        Usuario usuario = new Usuario();
+        usuario.setId(1L);
+        usuario.setUsername("carlos@test.com");
+
+        when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuario));
+
+        Usuario usuarioEncontrado = usuarioService.buscarPorId(1L);
+
+        assertNotNull(usuarioEncontrado);
+        assertEquals(1L, usuarioEncontrado.getId());
+        assertEquals("carlos@test.com", usuarioEncontrado.getUsername());
+    }
+
+    @Test
+    void deveLancarExcecaoQuandoUsuarioNaoForEncontrado() {
+        when(usuarioRepository.findById(1L)).thenReturn(Optional.empty());
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> usuarioService.buscarPorId(1L));
+        assertEquals("Usuario não encontrado ", thrown.getMessage());
     }
 }
