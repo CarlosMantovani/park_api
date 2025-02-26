@@ -1,4 +1,7 @@
 package com.mantovani.park_api.repository;
 
-public interface UsuarioRepository extends org.springframework.data.jpa.repository.JpaRepository<com.mantovani.park_api.entity.Usuario, java.lang.Long> {
+import com.mantovani.park_api.entity.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
   }
