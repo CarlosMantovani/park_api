@@ -58,4 +58,18 @@ class UsuarioServiceTest {
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> usuarioService.buscarPorId(1L));
         assertEquals("Usuario não encontrado ", thrown.getMessage());
     }
+
+    @Test
+    void deveAtualizarSenhaComSucesso() {
+        Usuario usuario = new Usuario();
+        usuario.setId(1L);
+        usuario.setPassword("senhaAntiga");
+
+        when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuario));
+
+        Usuario usuarioAtualizado = usuarioService.editarSenha(1L, "novaSenha");
+
+        assertNotNull(usuarioAtualizado);
+        assertEquals("novaSenha", usuarioAtualizado.getPassword());
+    }
 }
