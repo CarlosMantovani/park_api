@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -71,5 +72,28 @@ class UsuarioServiceTest {
 
         assertNotNull(usuarioAtualizado);
         assertEquals("novaSenha", usuarioAtualizado.getPassword());
+    }
+
+    @Test
+    void deveRetornarListaDeUsuarios() {
+        // Criando uma lista simulada de usuários
+        Usuario usuario1 = new Usuario();
+        usuario1.setUsername("carlos@test.com");
+
+        Usuario usuario2 = new Usuario();
+        usuario2.setUsername("joao@test.com");
+
+        List<Usuario> usuarios = List.of(usuario1, usuario2);
+
+        when(usuarioRepository.findAll()).thenReturn(usuarios);
+
+        List<Usuario> resultado = usuarioService.buscarTodos();
+
+        assertNotNull(resultado);
+        assertEquals(2, resultado.size());
+        assertEquals("carlos@test.com", resultado.get(0).getUsername());
+        assertEquals("joao@test.com", resultado.get(1).getUsername());
+
+        verify(usuarioRepository, times(1)).findAll();
     }
 }
