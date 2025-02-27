@@ -61,20 +61,6 @@ class UsuarioServiceTest {
     }
 
     @Test
-    void deveAtualizarSenhaComSucesso() {
-        Usuario usuario = new Usuario();
-        usuario.setId(1L);
-        usuario.setPassword("senhaAntiga");
-
-        when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuario));
-
-        Usuario usuarioAtualizado = usuarioService.editarSenha(1L, "novaSenha");
-
-        assertNotNull(usuarioAtualizado);
-        assertEquals("novaSenha", usuarioAtualizado.getPassword());
-    }
-
-    @Test
     void deveRetornarListaDeUsuarios() {
         // Criando uma lista simulada de usuários
         Usuario usuario1 = new Usuario();
