@@ -13,18 +13,20 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.nio.file.AccessDeniedException;
+
 @Slf4j
 @RestControllerAdvice
 public class ApiExceptionHandles {
 
-    @ExceptionHandler(PasswordInvalidExcepetion.class)
-    public ResponseEntity<ErrorMessage> PasswordInvalidExcepetion(PasswordInvalidExcepetion ex,
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorMessage> AccessDeniedException(AccessDeniedException ex,
                                                                 HttpServletRequest request){
         log.error("Api Error - ", ex);
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.FORBIDDEN)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, ex.getMessage()));
+                .body(new ErrorMessage(request, HttpStatus.FORBIDDEN, ex.getMessage()));
 
     }
 

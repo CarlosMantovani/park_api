@@ -21,7 +21,7 @@ public class JwtUltils {
     public static final String SECRET_KEY = "0123456789-0123456789-0123456789-0123456789-abcdefghijklmnopqrstuvwx";
     public static final long  EXPIRATION_DAYS = 0;
     public static final long  EXPIRATION_HOURS = 0;
-    public static final long  EXPIRATION_MINUTES = 2;
+    public static final long  EXPIRATION_MINUTES = 30;
 
     private JwtUltils(){
     }
