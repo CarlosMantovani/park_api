@@ -1,5 +1,6 @@
 package com.mantovani.park_api.web.controller;
 
+
 import com.mantovani.park_api.jwt.JwtToken;
 import com.mantovani.park_api.jwt.JwtUserDetailsService;
 import com.mantovani.park_api.web.dto.UsuarioLoginDto;
@@ -20,36 +21,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1")
 @RestController
+@RequestMapping("/api/v1")
 public class AutenticacaoController {
 
     private final JwtUserDetailsService detailsService;
-
     private final AuthenticationManager authenticationManager;
 
-    @PostMapping("/login")
+    @PostMapping("/auth")
     public ResponseEntity<?> autenticar(@RequestBody @Valid UsuarioLoginDto dto, HttpServletRequest request) {
-        log.info("Início do processo de autenticação para login. Username: {}", dto.getUsername());
-
+        log.info("Processo de autenticação pelo login {}", dto.getUsername());
         try {
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword());
-            log.info("Autenticando credenciais...");
 
             authenticationManager.authenticate(authenticationToken);
 
-            log.info("Usuário autenticado.");
-            JwtToken token = detailsService.getTokerAuthenticated(dto.getUsername());
+            JwtToken token = detailsService.getTokenAuthenticated(dto.getUsername());
 
-            log.info("Autenticação concluída com sucesso.");
             return ResponseEntity.ok(token);
-
-        } catch (AuthenticationException e) {
-            log.error("Falha na autenticação para o username '{}'. Credenciais inválidas.", dto.getUsername(), e);
+        } catch (AuthenticationException ex) {
+            log.warn("Bad Credentials from username '{}'", dto.getUsername());
         }
-
-        log.info("Retornando erro de credenciais inválidas.");
         return ResponseEntity
                 .badRequest()
                 .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Credenciais Inválidas"));

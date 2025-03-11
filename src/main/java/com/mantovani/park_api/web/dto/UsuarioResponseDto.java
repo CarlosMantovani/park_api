@@ -10,8 +10,6 @@ import lombok.*;
 public class UsuarioResponseDto {
 
     private Long id;
-
     private String username;
-
     private String role;
 }

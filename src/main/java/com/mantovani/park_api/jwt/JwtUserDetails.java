@@ -4,9 +4,7 @@ import com.mantovani.park_api.entity.Usuario;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
-import java.util.Collection;
-
-public class JwtUserDetails  extends User {
+public class JwtUserDetails extends User {
 
     private Usuario usuario;
 
@@ -19,8 +17,7 @@ public class JwtUserDetails  extends User {
         return this.usuario.getId();
     }
 
-    public String getRole(){
+    public String getRole() {
         return this.usuario.getRole().name();
     }
-
 }

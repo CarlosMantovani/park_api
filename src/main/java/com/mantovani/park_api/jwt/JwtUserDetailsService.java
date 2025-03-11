@@ -1,5 +1,6 @@
 package com.mantovani.park_api.jwt;
 
+
 import com.mantovani.park_api.entity.Usuario;
 import com.mantovani.park_api.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
+
     private final UsuarioService usuarioService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -18,9 +20,8 @@ public class JwtUserDetailsService implements UserDetailsService {
         return new JwtUserDetails(usuario);
     }
 
-    public JwtToken getTokerAuthenticated(String username){
+    public JwtToken getTokenAuthenticated(String username) {
         Usuario.Role role = usuarioService.buscarRolePorUsername(username);
-        return JwtUltils.createToken(username, role.name().substring("ROLE_".length()));
+        return JwtUtils.createToken(username, role.name().substring("ROLE_".length()));
     }
 }
-
