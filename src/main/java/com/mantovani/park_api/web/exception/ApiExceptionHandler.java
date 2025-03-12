@@ -1,6 +1,7 @@
 package com.mantovani.park_api.web.exception;
 
 
+import com.mantovani.park_api.exception.CpfUniqueViolationExpetion;
 import com.mantovani.park_api.exception.EntityNotFoundException;
 import com.mantovani.park_api.exception.PasswordInvalidException;
 import com.mantovani.park_api.exception.UsernameUniqueViolationException;
@@ -46,7 +47,7 @@ public class ApiExceptionHandler {
                 .body(new ErrorMessage(request, HttpStatus.NOT_FOUND, ex.getMessage()));
     }
 
-    @ExceptionHandler(UsernameUniqueViolationException.class)
+    @ExceptionHandler({UsernameUniqueViolationException.class, CpfUniqueViolationExpetion.class})
     public ResponseEntity<ErrorMessage> uniqueViolationException(RuntimeException ex, HttpServletRequest request) {
         log.error("Api Error - ", ex);
         return ResponseEntity
