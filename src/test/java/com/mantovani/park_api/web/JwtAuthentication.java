@@ -1,4 +1,5 @@
-package com.mantovani.park_api;
+package com.mantovani.park_api.web;
+
 
 import com.mantovani.park_api.jwt.JwtToken;
 import com.mantovani.park_api.web.dto.UsuarioLoginDto;
@@ -9,7 +10,7 @@ import java.util.function.Consumer;
 
 public class JwtAuthentication {
 
-    public static Consumer<HttpHeaders> getHeaderAuthorization(WebTestClient client, String username, String password){
+    public static Consumer<HttpHeaders> getHeaderAuthorization(WebTestClient client, String username, String password) {
         String token = client
                 .post()
                 .uri("/api/v1/auth")

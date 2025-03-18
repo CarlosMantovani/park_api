@@ -1,6 +1,5 @@
 package com.mantovani.park_api.web.controller;
 
-
 import com.mantovani.park_api.jwt.JwtToken;
 import com.mantovani.park_api.jwt.JwtUserDetailsService;
 import com.mantovani.park_api.web.dto.UsuarioLoginDto;
@@ -25,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Autenticação", description = "Rescurso para proceder com a autenticação na API")
+@Tag(name = "Autenticação", description = "Recurso para proceder com a autenticação na API")
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -39,9 +38,9 @@ public class AutenticacaoController {
             responses = {
                     @ApiResponse(responseCode = "200", description = "Autenticação realizada com sucesso e retorno de um bearer token",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioResponseDto.class))),
-                    @ApiResponse(responseCode = "400", description = "Credenciais Invalidas",
+                    @ApiResponse(responseCode = "400", description = "Credenciais inválidas",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
-                    @ApiResponse(responseCode = "422", description = "Campo(s) Invalidos",
+                    @ApiResponse(responseCode = "422", description = "Campo(s) Inválido(s)",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
             })
     @PostMapping("/auth")

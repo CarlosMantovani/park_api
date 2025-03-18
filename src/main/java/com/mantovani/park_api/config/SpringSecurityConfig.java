@@ -1,5 +1,6 @@
 package com.mantovani.park_api.config;
 
+
 import com.mantovani.park_api.jwt.JwtAuthenticationEntryPoint;
 import com.mantovani.park_api.jwt.JwtAuthorizationFilter;
 import org.springframework.context.annotation.Bean;

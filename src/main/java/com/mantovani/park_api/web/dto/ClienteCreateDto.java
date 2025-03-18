@@ -9,8 +9,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Getter @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 public class ClienteCreateDto {
     @NotBlank
     @Size(min = 5, max = 100)
@@ -18,5 +17,4 @@ public class ClienteCreateDto {
     @Size(min = 11, max = 11)
     @CPF
     private String cpf;
-
 }

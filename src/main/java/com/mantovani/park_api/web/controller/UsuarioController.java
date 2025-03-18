@@ -1,8 +1,8 @@
 package com.mantovani.park_api.web.controller;
 
+
 import com.mantovani.park_api.entity.Usuario;
 import com.mantovani.park_api.service.UsuarioService;
-
 import com.mantovani.park_api.web.dto.UsuarioCreateDto;
 import com.mantovani.park_api.web.dto.UsuarioResponseDto;
 import com.mantovani.park_api.web.dto.UsuarioSenhaDto;
@@ -68,7 +68,6 @@ public class UsuarioController {
             security = @SecurityRequirement(name = "security"),
             responses = {
                     @ApiResponse(responseCode = "204", description = "Senha atualizada com sucesso"),
-
                     @ApiResponse(responseCode = "400", description = "Senha não confere",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
                     @ApiResponse(responseCode = "403", description = "Usuário sem permissão para acessar este recurso",
