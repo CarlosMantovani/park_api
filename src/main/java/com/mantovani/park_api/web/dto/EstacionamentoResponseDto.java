@@ -40,5 +40,4 @@ public class EstacionamentoResponseDto {
     private BigDecimal valor;
     private BigDecimal desconto;
 
-
 }
