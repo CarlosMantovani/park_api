@@ -1,9 +1,9 @@
-package com.mantovani.park_api.web;
+package com.mballem.demoparkapi;
 
-import com.mantovani.park_api.web.dto.UsuarioCreateDto;
-import com.mantovani.park_api.web.dto.UsuarioResponseDto;
-import com.mantovani.park_api.web.dto.UsuarioSenhaDto;
-import com.mantovani.park_api.web.exception.ErrorMessage;
+import com.mballem.demoparkapi.web.dto.UsuarioCreateDto;
+import com.mballem.demoparkapi.web.dto.UsuarioResponseDto;
+import com.mballem.demoparkapi.web.dto.UsuarioSenhaDto;
+import com.mballem.demoparkapi.web.exception.ErrorMessage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

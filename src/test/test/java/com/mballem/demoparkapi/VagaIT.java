@@ -1,6 +1,6 @@
-package com.mantovani.park_api.web;
+package com.mballem.demoparkapi;
 
-import com.mantovani.park_api.web.dto.VagaCreateDto;
+import com.mballem.demoparkapi.web.dto.VagaCreateDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

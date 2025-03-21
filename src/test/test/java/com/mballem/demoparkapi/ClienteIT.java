@@ -1,10 +1,9 @@
-package com.mantovani.park_api.web;
+package com.mballem.demoparkapi;
 
-
-import com.mantovani.park_api.web.dto.ClienteCreateDto;
-import com.mantovani.park_api.web.dto.ClienteResponseDto;
-import com.mantovani.park_api.web.dto.PageableDto;
-import com.mantovani.park_api.web.exception.ErrorMessage;
+import com.mballem.demoparkapi.web.dto.ClienteCreateDto;
+import com.mballem.demoparkapi.web.dto.ClienteResponseDto;
+import com.mballem.demoparkapi.web.dto.PageableDto;
+import com.mballem.demoparkapi.web.exception.ErrorMessage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
