@@ -3,6 +3,7 @@ package com.mantovani.park_api.service;
 import com.mantovani.park_api.entity.Vaga;
 import com.mantovani.park_api.exception.CodigoUniqueViolationException;
 import com.mantovani.park_api.exception.EntityNotFoundException;
+import com.mantovani.park_api.exception.VagaDisponivelException;
 import com.mantovani.park_api.repository.VagasRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,24 +17,26 @@ import static com.mantovani.park_api.entity.Vaga.StatusVaga.LIVRE;
 public class VagaService {
      private final VagasRepository vagasRepository;
 
-     @Transactional
-     public Vaga salvar(Vaga vaga){
-         try {
-             return vagasRepository.save(vaga);
-         } catch (DataIntegrityViolationException ex){
-             throw new CodigoUniqueViolationException(String.format("Vaga com codigo '%s' ja cadastrada", vaga.getCodigo()));
-         }
-     }
+    @Transactional
+    public Vaga salvar(Vaga vaga) {
+        try {
+            return vagasRepository.save(vaga);
+        } catch (DataIntegrityViolationException ex) {
+            throw new CodigoUniqueViolationException("Vaga", vaga.getCodigo());
+        }
+    }
+
     @Transactional(readOnly = true)
-     public Vaga buscarPorCodigo(String codigo){
-         return vagasRepository.findByCodigo(codigo).orElseThrow(
-                 ()-> new EntityNotFoundException(String.format("Vaga com codigo '%s' nao foi encotrada", codigo))
-         );
-     }
+    public Vaga buscarPorCodigo(String codigo) {
+        return vagasRepository.findByCodigo(codigo).orElseThrow(
+                () -> new EntityNotFoundException("Vaga", codigo)
+        );
+    }
+
     @Transactional(readOnly = true)
     public Vaga buscarPorVagaLivre() {
-         return vagasRepository.findFirstByStatus(LIVRE).orElseThrow(
-                 () -> new EntityNotFoundException("Nenhuma vaga livre encontrada")
-         );
+        return vagasRepository.findFirstByStatus(LIVRE).orElseThrow(
+                () -> new VagaDisponivelException()
+        );
     }
 }

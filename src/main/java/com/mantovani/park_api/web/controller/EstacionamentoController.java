@@ -130,7 +130,7 @@ public class EstacionamentoController {
     public ResponseEntity<PageableDto> getALlEstacionamentosPorCpf(@PathVariable String cpf,
                                                                   @PageableDefault(size = 5, sort = "dataEntrada",
                                                                   direction = Sort.Direction.ASC) Pageable pageable){
-        Page<ClienteVagaProjection> projection = clienteVagaService.buscarTodosPorCLienteCpf(cpf, pageable);
+        Page<ClienteVagaProjection> projection = clienteVagaService.buscarTodosPorClienteCpf(cpf, pageable);
         PageableDto dto = PageableMapper.toDto(projection);
         return ResponseEntity.ok(dto);
     }

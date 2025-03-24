@@ -41,7 +41,7 @@ public class EstacionamentoService {
         BigDecimal valor = EstacionamentoUtils.calcularCusto(clienteVaga.getDataEntrada(), dataSaida);
         clienteVaga.setValor(valor);
 
-        long totalDeVezes = clienteVagaService.getTotalDeVezesEstacionametoCompleto(clienteVaga.getCliente().getCpf());
+        long totalDeVezes = clienteVagaService.getTotalDeVezesEstacionamentoCompleto(clienteVaga.getCliente().getCpf());
 
         BigDecimal desconto = EstacionamentoUtils.calcularDesconto(valor, totalDeVezes);
         clienteVaga.setDesconto(desconto);
