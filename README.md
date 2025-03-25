@@ -1,6 +1,6 @@
 # Park API
 
-API para gerenciamento de estacionamento, incluindo usuários, veículos e vagas.
+API para gerenciamento de estacionamento, incluindo usuários, veículos e vagas. Ainda em desenvolvimento.
 
 ## 🚀 Tecnologias
 
