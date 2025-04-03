@@ -20,9 +20,14 @@ pipeline {
             }
         }
         stage('Análise Sonar') {
-            steps {
-                bat 'mvn sonar:sonar -Dsonar.projectKey=Analise_parkApi -Dsonar.host.url=http://localhost:9000 -Dsonar.login=843f351375288e659cf7c6348fbab3afc3b748d2'
-            }
+           environment {
+                SONAR_SCANNER_OPTS = '--add-opens java.base/java.lang=ALL-UNNAMED'
+           }
+           steps {
+               withSonarQubeEnv('SONAR_LOCAL') {
+                    bat "\"${scannerHome}/bin/sonar-scanner\" -e -Dsonar.projectKey=Analise_parkApi -Dsonar.host.url=http://localhost:9000 -Dsonar.login=843f351375288e659cf7c6348fbab3afc3b748d2 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**/application.java"
+               }
+           }
         }
     }
 }
