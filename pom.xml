@@ -11,6 +11,7 @@
 	<groupId>com.mantovani</groupId>
 	<artifactId>park_api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>park_api</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
