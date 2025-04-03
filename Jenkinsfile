@@ -21,6 +21,7 @@ pipeline {
         }
         stage('Análise Sonar') {
            environment {
+                scannerHome = tool 'SONAR_SCANNER'
                 SONAR_SCANNER_OPTS = '--add-opens java.base/java.lang=ALL-UNNAMED'
            }
            steps {
