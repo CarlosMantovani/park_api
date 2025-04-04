@@ -29,6 +29,7 @@ pipeline {
                     bat "\"${scannerHome}/bin/sonar-scanner\" -e -Dsonar.projectKey=Analise_parkApi -Dsonar.host.url=http://localhost:9000 -Dsonar.login=843f351375288e659cf7c6348fbab3afc3b748d2 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**/application.java"
                }
            }
+        }
 
         stage('Quality Gate') {
            steps {
@@ -38,7 +39,6 @@ pipeline {
                     }
                 }
            }
-        }
         stage('Build Docker Image') {
            steps {
               script {
