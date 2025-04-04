@@ -20,7 +20,7 @@ pipeline {
                 script {
                     // Constrói a imagem e a armazena na variável 'dockerImage'
                     dockerImage = docker.build("${DOCKER_HUB_REPO}:${BUILD_NUMBER}", "--file Dockerfile .")
-                    echo(dockerImage)
+                     echo "dockerImage: ${dockerImage}"
                 }
             }
         }
