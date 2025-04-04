@@ -25,9 +25,10 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                script {
+                node {
                     // Autentica no Docker Hub e dá push na imagem construída
                     docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
+                        dockerImage = docker.build("${DOCKER_HUB_REPO}:${BUILD_NUMBER}", "--file Dockerfile .")
                         dockerImage.push()          // Push com a tag do BUILD_NUMBER
                       
                     }
