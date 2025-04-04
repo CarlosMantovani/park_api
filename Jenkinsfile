@@ -8,13 +8,6 @@ pipeline {
         DOCKER_HUB_USER = "carlosdev937"
         DOCKER_HUB_REPO = "${DOCKER_HUB_USER}/park_api"
     }
-    
-    stages {
-        stage('Build Projeto') {
-            steps {
-                bat 'mvn clean package -DskipTests=true'
-            }
-        }
         stage('Build Docker Image') {
             steps {
                 script {
