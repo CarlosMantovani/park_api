@@ -20,6 +20,7 @@ pipeline {
                 script {
                     // Constrói a imagem e a armazena na variável 'dockerImage'
                     dockerImage = docker.build("${DOCKER_HUB_REPO}:${BUILD_NUMBER}", "--file Dockerfile .")
+                    echo(dockerImage)
                 }
             }
         }
@@ -28,7 +29,6 @@ pipeline {
                 node {
                     // Autentica no Docker Hub e dá push na imagem construída
                     docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
-                        dockerImage = docker.build("${DOCKER_HUB_REPO}:${BUILD_NUMBER}", "--file Dockerfile .")
                         dockerImage.push()          // Push com a tag do BUILD_NUMBER
                       
                     }
