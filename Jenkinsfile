@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                node {
+                script {
                     // Autentica no Docker Hub e dá push na imagem construída
                     docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
                         dockerImage.push()          // Push com a tag do BUILD_NUMBER
