@@ -27,9 +27,9 @@ pipeline {
             steps {
                 script {
                     // Autentica no Docker Hub e dá push na imagem construída
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
                         dockerImage.push()          // Push com a tag do BUILD_NUMBER
-                        dockerImage.push('latest')  // Opcional: push também com a tag 'latest'
+                      
                     }
                 }
             }
