@@ -49,8 +49,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/repositories', 'DockerHub') {
-                        def image = docker.build("${DOCKER_HUB_REPO}:${BUILD_NUMBER}", "--file Dockerfile .")
+                    docker.withRegistry('https://login.docker.com/u/login/identifier?state=hKFo2SBfYTZlMEV3bzBxUUZFTjBDN1JFcHAtbEtvRlNCTzR6eKFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIGFPZ1dqb0tjVXhlSlBULTAwRng4bzkzWkNuMTR1bmtFo2NpZNkgbHZlOUdHbDhKdFNVcm5lUTFFVnVDMGxiakhkaTluYjk',
+                    'DockerHub') {
                         image.push()
                     }
                 }
