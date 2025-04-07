@@ -6,7 +6,7 @@ pipeline {
         CONTAINER_NAME = "park_api"
         REPO_URL = "https://github.com/CarlosMantovani/park_api.git"
         DOCKER_HUB_USER = "carlosdev937"
-        DOCKER_HUB_REPO = "${DOCKER_HUB_USER}/park_api"  // Definindo a variável aqui
+        DOCKER_HUB_REPO = "${DOCKER_HUB_USER}/park_api"  
     }
 
     stages {
