@@ -2,11 +2,8 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "park_api"
-        CONTAINER_NAME = "park_api"
-        REPO_URL = "https://github.com/CarlosMantovani/park_api.git"
-        DOCKER_HUB_USER = "carlosdev937"
-        DOCKER_HUB_REPO = "${DOCKER_HUB_USER}/park_api"  
+       IMAGE_NAME = "ghcr.io/carlosmantovani/park_api"
+       REPO_URL = "https://github.com/CarlosMantovani/park_api.git"
     }
 
     stages {
@@ -42,17 +39,15 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def image = docker.build("${DOCKER_HUB_REPO}:${BUILD_NUMBER}", "--file Dockerfile .")
+                    docker.build("${IMAGE_NAME}:${BUILD_NUMBER}", "--file Dockerfile .")
                 }
             }
         }
-        stage('Push Docker Image') {
+        stage('Push para GitHub Packages') {
             steps {
                 script {
-                    sleep(50)
-                    docker.withRegistry('https://login.docker.com/u/login/identifier?state=hKFo2SBfYTZlMEV3bzBxUUZFTjBDN1JFcHAtbEtvRlNCTzR6eKFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIGFPZ1dqb0tjVXhlSlBULTAwRng4bzkzWkNuMTR1bmtFo2NpZNkgbHZlOUdHbDhKdFNVcm5lUTFFVnVDMGxiakhkaTluYjk',
-                    'DockerHub') {
-                        image.push()
+                    docker.withRegistry('https://ghcr.io', 'github-packages-token') {
+                        docker.image("${IMAGE_NAME}:${BUILD_NUMBER}").push()
                     }
                 }
             }
