@@ -49,6 +49,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
+                    sleep(50)
                     docker.withRegistry('https://login.docker.com/u/login/identifier?state=hKFo2SBfYTZlMEV3bzBxUUZFTjBDN1JFcHAtbEtvRlNCTzR6eKFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIGFPZ1dqb0tjVXhlSlBULTAwRng4bzkzWkNuMTR1bmtFo2NpZNkgbHZlOUdHbDhKdFNVcm5lUTFFVnVDMGxiakhkaTluYjk',
                     'DockerHub') {
                         image.push()
