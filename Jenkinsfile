@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     echo "Construindo imagem: ${IMAGE_NAME}:${BUILD_NUMBER}"
-                    def image = docker.build("${IMAGE_NAME}:${BUILD_NUMBER}", "--file Dockerfile .")
+                    image = docker.build("${IMAGE_NAME}:${BUILD_NUMBER}", "--file Dockerfile .")
                     bat "docker images | findstr park_api"
                 }
             }
