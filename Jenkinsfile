@@ -46,7 +46,7 @@ pipeline {
         stage('Push para GitHub Packages') {
             steps {
                 script {
-                    docker.withRegistry('https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Ffeatures%2Factions', 'github-packages-token') {
+                    docker.withRegistry('https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Ffeatures%2Factions', 'github_login') {
                         docker.image("${IMAGE_NAME}:${BUILD_NUMBER}").push()
                     }
                 }
